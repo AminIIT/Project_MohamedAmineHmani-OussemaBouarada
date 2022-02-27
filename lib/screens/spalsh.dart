@@ -9,9 +9,12 @@ class SplashScreen extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset("assets/images/logo.png", width: 50),
+          Image.asset(
+            'assets/images/logo.png',
+            width: 120,
+          ),
           SizedBox(
-            height: 10,
+            height: 100,
           ),
           Loading()
         ],

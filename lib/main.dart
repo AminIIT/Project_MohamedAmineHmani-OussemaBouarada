@@ -7,6 +7,7 @@ import 'package:ihm/controllers/cart_controller.dart';
 import 'package:ihm/controllers/map_controller.dart';
 import 'package:ihm/controllers/paymentcontroller.dart';
 import 'package:ihm/controllers/product_controller.dart';
+
 import 'package:ihm/screens/authentification/login.dart';
 import 'package:ihm/screens/spalsh.dart';
 
@@ -21,6 +22,7 @@ void main() async {
     Get.put(ProducsController());
     Get.put(PaymentsController());
     Get.put(MapController());
+   
   });
   runApp(const MyApp());
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);

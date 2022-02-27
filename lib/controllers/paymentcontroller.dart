@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:ihm/constants/app_constants.dart';
@@ -7,6 +7,7 @@ import 'package:ihm/constants/fire_base_constants.dart';
 import 'package:ihm/models/payment.dart';
 import 'package:ihm/screens/payments/payment.dart';
 import 'package:ihm/widgets/global_widgets/custom_text.dart';
+import 'package:ihm/widgets/global_widgets/show_loading.dart';
 import 'package:stripe_payment/stripe_payment.dart';
 
 import 'package:uuid/uuid.dart';
@@ -59,11 +60,11 @@ class PaymentsController extends GetxController {
     paymentMethod != null
         ? processPaymentAsDirectCharge(paymentMethod)
         : _showPaymentFailedAlert();
-    //dismissLoadingWidget();
+    dismissLoadingWidget();
   }
 
   Future<void> processPaymentAsDirectCharge(PaymentMethod paymentMethod) async {
-    //showLoading();
+    showLoading();
 
     try {
       int amount = (double.parse(
@@ -96,7 +97,7 @@ class PaymentsController extends GetxController {
   }
 
   getPaymentHistory() {
-    //showLoading();
+    showLoading();
     payments.clear();
     firebaseFirestore
         .collection(collection)
@@ -110,7 +111,7 @@ class PaymentsController extends GetxController {
       }
 
       logger.i("length ${payments.length}");
-      //dismissLoadingWidget();
+      dismissLoadingWidget();
       Get.to(() => PaymentsScreen());
     });
   }

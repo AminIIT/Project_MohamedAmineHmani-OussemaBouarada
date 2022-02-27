@@ -1,10 +1,10 @@
-import 'dart:ui';
+
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:ihm/constants/controllers.dart';
-import 'package:ihm/screens/adress.dart';
+import 'package:ihm/screens/map.dart';
 
 import 'package:ihm/widgets/global_widgets/custom_text.dart';
 import 'package:ihm/screens/home/widgets/product_widget.dart';

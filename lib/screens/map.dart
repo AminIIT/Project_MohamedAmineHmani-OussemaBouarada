@@ -1,14 +1,17 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
+
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:ihm/constants/fire_base_constants.dart';
+
 import 'package:ihm/screens/home/home_shop.dart';
 
 import '../constants/controllers.dart';
 
 class AdressMap extends StatelessWidget {
+  const AdressMap({Key? key}) : super(key: key);
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
