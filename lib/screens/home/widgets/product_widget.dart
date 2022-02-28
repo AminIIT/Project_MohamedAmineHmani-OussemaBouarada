@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:simple_list_tile/simple_list_tile.dart';
 
 import 'package:ihm/constants/controllers.dart';
@@ -25,9 +26,15 @@ class ProductsWidget extends StatelessWidget {
                 children: [
                   SimpleListTile(
                     onTap: () {
-                      Image(
-                        image:
-                            NetworkImage(producsController.product[index].name),
+                      showBarModalBottomSheet(
+                        context: context,
+                        builder: (context) => Container(
+                          color: Colors.white,
+                          child: Image(
+                            image: NetworkImage(
+                                producsController.product[index].image),
+                          ),
+                        ),
                       );
                     },
                     title: CustomText(
@@ -55,11 +62,11 @@ class ProductsWidget extends StatelessWidget {
                     tileColor: Colors.grey[300]!,
                     circleColor: Colors.grey[100]!,
                     circleDiameter: 200,
-                    gradient: LinearGradient(
+                    gradient: const LinearGradient(
                       colors: [Colors.white, Colors.grey],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10.0,
                   )
                 ],
