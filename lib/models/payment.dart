@@ -23,8 +23,6 @@ class PaymentsModel {
     required this.cart,
   });
 
-  
-
   PaymentsModel.fromMap(Map data) {
     id = data[ID];
     createdAt = data[CREATED_AT];
@@ -36,13 +34,12 @@ class PaymentsModel {
   factory PaymentsModel.fromDocumentSnapshot(
       {required DocumentSnapshot documentSnapshot}) {
     return PaymentsModel(
-       id :documentSnapshot.id,
-    createdAt: documentSnapshot[CREATED_AT],
-    paymentId : documentSnapshot[PAYMENT_ID],
-    amount :documentSnapshot[AMOUNT],
-    status :documentSnapshot[STATUS],
-    cart :documentSnapshot[CART],
-      
+      id: documentSnapshot.id,
+      createdAt: documentSnapshot[CREATED_AT],
+      paymentId: documentSnapshot[PAYMENT_ID],
+      amount: documentSnapshot[AMOUNT],
+      status: documentSnapshot[STATUS],
+      cart: documentSnapshot[CART],
     );
   }
 }
