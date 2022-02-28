@@ -9,6 +9,7 @@ import 'package:ihm/widgets/global_widgets/custom_button2.dart';
 import 'package:ihm/widgets/global_widgets/custom_formfield.dart';
 import 'package:ihm/widgets/global_widgets/custom_header.dart';
 import 'package:ihm/widgets/global_widgets/custom_richtext.dart';
+import 'package:ihm/widgets/global_widgets/show_loading.dart';
 
 class SignUp extends StatelessWidget {
   final _emailController = TextEditingController();
@@ -34,6 +35,7 @@ class SignUp extends StatelessWidget {
       },
       child: Scaffold(
         resizeToAvoidBottomInset: true,
+        extendBody: true,
         body: SingleChildScrollView(
           child: SafeArea(
               child: Stack(
@@ -46,8 +48,7 @@ class SignUp extends StatelessWidget {
               CustomHeader(
                   text: 'Sign Up.',
                   onTap: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()));
+                    Get.to(LoginScreen());
                   }),
               Positioned(
                 top: MediaQuery.of(context).size.height * 0.08,
@@ -122,6 +123,7 @@ class SignUp extends StatelessWidget {
                       ),
                       AuthButton(
                         onTap: () async {
+                          showLoading();
                           authController.register(
                               _userName.text.trim(),
                               _emailController.text.trim(),
@@ -145,6 +147,7 @@ class SignUp extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               vertical: 3.0, horizontal: 20.0),
                           onPressed: () {
+                            showLoading();
                             authController.signInWithGoogle();
                           },
                         ),

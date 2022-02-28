@@ -10,6 +10,7 @@ import 'package:ihm/widgets/global_widgets/custom_button2.dart';
 import 'package:ihm/widgets/global_widgets/custom_formfield.dart';
 import 'package:ihm/widgets/global_widgets/custom_header.dart';
 import 'package:ihm/widgets/global_widgets/custom_richtext.dart';
+import 'package:ihm/widgets/global_widgets/show_loading.dart';
 
 import '../../constants/controllers.dart';
 
@@ -30,6 +31,7 @@ class LoginScreen extends StatelessWidget {
         resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
           child: Stack(
+            fit: StackFit.passthrough,
             children: [
               Container(
                 height: MediaQuery.of(context).size.height,
@@ -117,6 +119,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       AuthButton(
                         onTap: () async {
+                          showLoading();
                           authController.login(_emailController.text.trim(),
                               _passwordController.text.trim());
                         },
@@ -138,6 +141,7 @@ class LoginScreen extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               vertical: 3.0, horizontal: 20.0),
                           onPressed: () {
+                            showLoading();
                             authController.signInWithGoogle();
                           },
                         ),
@@ -146,10 +150,7 @@ class LoginScreen extends StatelessWidget {
                         discription: "Don't already Have an account? ",
                         text: "Sign Up",
                         onTap: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SignUp()));
+                          Get.to(SignUp());
                         },
                       ),
                     ],
