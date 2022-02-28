@@ -23,29 +23,22 @@ class AdressMap extends StatelessWidget {
           icon: const Icon(Icons.keyboard_return_rounded),
         ),
       ),
-      body: Column(
-        crossAxisAlignment : CrossAxisAlignment.center,
-        children: [
-          Stack(children: [
-            
-           
-            GoogleMap(
-              markers: Set<Marker>.of(mapController.markers.values),
-              myLocationEnabled: true,
-              mapToolbarEnabled: true,
-              myLocationButtonEnabled: true,
-              initialCameraPosition: const CameraPosition(
-                target: LatLng(34.72886331178963, 10.737858915101318),
-                zoom: 18.4746,
-              ),
-              mapType: MapType.normal,
-              onMapCreated: (GoogleMapController controller) {
-                Completer();
-              },
-            )
-          ]),
-        ],
-      ),
+      body: Stack(children: [
+        GoogleMap(
+          markers: Set<Marker>.of(mapController.markers.values),
+          myLocationEnabled: true,
+          mapToolbarEnabled: true,
+          myLocationButtonEnabled: true,
+          initialCameraPosition: const CameraPosition(
+            target: LatLng(34.72886331178963, 10.737858915101318),
+            zoom: 18.4746,
+          ),
+          mapType: MapType.normal,
+          onMapCreated: (GoogleMapController controller) {
+            Completer();
+          },
+        )
+      ]),
     );
   }
 }

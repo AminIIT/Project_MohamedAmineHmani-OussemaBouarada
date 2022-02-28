@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:ihm/constants/controllers.dart';
 
-
 import 'package:ihm/widgets/global_widgets/custom_text.dart';
 import 'package:ihm/widgets/global_widgets/custom_button2.dart';
 
@@ -55,7 +54,8 @@ class ShoppingCartWidget extends StatelessWidget {
                       text:
                           "Pay (\$${cartController.totalCartPrice.value.toStringAsFixed(2)})",
                       onTap: () async {
-                        await paymentsController.createPaymentMethod();
+                        await paymentsController.createPaymentMethod(
+                            userController.userModel.value);
                       }),
                 )))
       ],

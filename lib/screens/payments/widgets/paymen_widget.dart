@@ -61,7 +61,7 @@ class PaymentWidget extends StatelessWidget {
                           text: item['name'],
                         ),
                         trailing: CustomText(
-                          text: "\$ ${item['cost']}",
+                          text: "\$ " + item['cost'].toStringAsFixed(2),
                         ),
                       ))
                   .toList()),

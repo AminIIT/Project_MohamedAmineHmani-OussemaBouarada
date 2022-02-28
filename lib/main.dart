@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
 import 'package:ihm/controllers/auth_controller.dart';
 import 'package:ihm/controllers/cart_controller.dart';
 import 'package:ihm/controllers/map_controller.dart';
 import 'package:ihm/controllers/paymentcontroller.dart';
 import 'package:ihm/controllers/product_controller.dart';
-
-import 'package:ihm/screens/authentification/login.dart';
 import 'package:ihm/screens/spalsh.dart';
-
 import 'constants/fire_base_constants.dart';
 
 void main() async {

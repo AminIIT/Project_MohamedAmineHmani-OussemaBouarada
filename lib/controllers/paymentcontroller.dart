@@ -1,10 +1,10 @@
-
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:ihm/constants/app_constants.dart';
 import 'package:ihm/constants/controllers.dart';
 import 'package:ihm/constants/fire_base_constants.dart';
 import 'package:ihm/models/payment.dart';
+import 'package:ihm/models/user.dart';
 import 'package:ihm/screens/payments/payment.dart';
 import 'package:ihm/widgets/global_widgets/custom_text.dart';
 import 'package:ihm/widgets/global_widgets/show_loading.dart';
@@ -45,7 +45,7 @@ class PaymentsController extends GetxController {
         : _showPaymentFailedAlert();
     //dismissLoadingWidget();
   }*/
-  Future<void> createPaymentMethod() async {
+  Future<void> createPaymentMethod(UserModel userModel) async {
     logger.i("length ${payments.length}");
     StripePayment.setStripeAccount("acct_1KXDEkFHzmJTFbQo");
     //step 1: add card
@@ -80,6 +80,7 @@ class PaymentsController extends GetxController {
         if (status == 'succeeded') {
           StripePayment.completeNativePayRequest();
           _addToCollection(status, paymentMethod.id);
+          //cartController.emptyCart( userModel);
           userController.updateUserData({"cart": []});
           Get.snackbar("Success", "Payment succeeded");
         } else {

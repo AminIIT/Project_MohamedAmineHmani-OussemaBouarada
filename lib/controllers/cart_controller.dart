@@ -12,7 +12,7 @@ import 'package:uuid/uuid.dart';
 class CartController extends GetxController {
   static CartController instance = Get.find();
   RxDouble totalCartPrice = 0.0.obs;
- // RxInt totQuan = 0.obs;
+  // RxInt totQuan = 0.obs;
 
   @override
   void onReady() {
@@ -57,6 +57,16 @@ class CartController extends GetxController {
       debugPrint(e.toString());
     }
   }
+  /*void emptyCart(UserModel userModel) {
+    try {
+      userController.updateUserData({
+        "cart": FieldValue.arrayRemove(userModel.cartItemsToJson())
+      });
+    } catch (e) {
+      Get.snackbar("Error", "Cannot remove this item");
+      debugPrint(e.toString());
+    }
+  }*/
 
   changeCartTotalPrice(UserModel userModel) {
     totalCartPrice.value = 0.0;
@@ -78,7 +88,7 @@ class CartController extends GetxController {
     } else {
       removeCartItem(item);
       item.quantity--;
-     // totQuan.value = item.quantity;
+      // totQuan.value = item.quantity;
 
       userController.updateUserData({
         "cart": FieldValue.arrayUnion([item.toJson()])

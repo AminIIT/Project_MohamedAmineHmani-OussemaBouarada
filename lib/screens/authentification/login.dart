@@ -11,26 +11,15 @@ import 'package:ihm/widgets/global_widgets/custom_formfield.dart';
 import 'package:ihm/widgets/global_widgets/custom_header.dart';
 import 'package:ihm/widgets/global_widgets/custom_richtext.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+import '../../constants/controllers.dart';
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
+class LoginScreen extends StatelessWidget {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  bool _passwordVisible = true;
+
   String get email => _emailController.text.trim();
   String get password => _passwordController.text.trim();
   @override
-  void initState() {
-    // TODO: implement initState
-    _passwordVisible = false;
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -50,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
               CustomHeader(
                 text: 'Log In.',
                 onTap: () {
-                  Get.offAll(const SignUp());
+                  Get.offAll(SignUp());
                 },
               ),
               Positioned(
@@ -89,26 +78,25 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(
                         height: 16,
                       ),
-                      CustomFormField(
-                        headingText: "Password",
-                        maxLines: 1,
-                        textInputAction: TextInputAction.done,
-                        textInputType: TextInputType.text,
-                        hintText: "At least 8 Character",
-                        obsecureText: !_passwordVisible,
-                        suffixIcon: IconButton(
-                            icon: Icon(
-                              !_passwordVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                _passwordVisible = !_passwordVisible;
-                              });
-                            }),
-                        controller: _passwordController,
-                      ),
+                      Obx(() => CustomFormField(
+                            headingText: "Password",
+                            maxLines: 1,
+                            textInputAction: TextInputAction.done,
+                            textInputType: TextInputType.text,
+                            hintText: "At least 8 Character",
+                            obsecureText: !userController.passwordVisible.value,
+                            suffixIcon: IconButton(
+                                icon: Icon(
+                                  userController.passwordVisible.value
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                ),
+                                onPressed: () {
+                                  userController.passwordVisible.value =
+                                      !userController.passwordVisible.value;
+                                }),
+                            controller: _passwordController,
+                          )),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -161,7 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const SignUp()));
+                                  builder: (context) => SignUp()));
                         },
                       ),
                     ],

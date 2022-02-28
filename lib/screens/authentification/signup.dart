@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:get/get.dart';
+import 'package:ihm/constants/controllers.dart';
 import 'package:ihm/constants/fire_base_constants.dart';
 import 'package:ihm/styles/app_colors.dart';
 import 'package:ihm/screens/authentification/login.dart';
@@ -9,25 +10,14 @@ import 'package:ihm/widgets/global_widgets/custom_formfield.dart';
 import 'package:ihm/widgets/global_widgets/custom_header.dart';
 import 'package:ihm/widgets/global_widgets/custom_richtext.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
-
-  @override
-  State<SignUp> createState() => _SignUpState();
-}
-
-class _SignUpState extends State<SignUp> {
+class SignUp extends StatelessWidget {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _nameController = TextEditingController();
   bool _passwordVisible = true;
   final _userName = TextEditingController();
 
-  @override
-  void initState() {
-    _passwordVisible = false;
-    super.initState();
-  }
+  SignUp({Key? key}) : super(key: key);
 
   String get userName => _userName.text.trim();
 
@@ -56,10 +46,8 @@ class _SignUpState extends State<SignUp> {
               CustomHeader(
                   text: 'Sign Up.',
                   onTap: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginScreen()));
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()));
                   }),
               Positioned(
                 top: MediaQuery.of(context).size.height * 0.08,
@@ -110,26 +98,25 @@ class _SignUpState extends State<SignUp> {
                       const SizedBox(
                         height: 16,
                       ),
-                      CustomFormField(
-                        maxLines: 1,
-                        textInputAction: TextInputAction.done,
-                        textInputType: TextInputType.text,
-                        controller: _passwordController,
-                        headingText: "Password",
-                        hintText: "At least 8 Character",
-                        obsecureText: !_passwordVisible,
-                        suffixIcon: IconButton(
-                            icon: Icon(
-                              !_passwordVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                _passwordVisible = !_passwordVisible;
-                              });
-                            }),
-                      ),
+                      Obx(() => CustomFormField(
+                            headingText: "Password",
+                            maxLines: 1,
+                            textInputAction: TextInputAction.done,
+                            textInputType: TextInputType.text,
+                            hintText: "At least 8 Character",
+                            obsecureText: !userController.passwordVisible.value,
+                            suffixIcon: IconButton(
+                                icon: Icon(
+                                  userController.passwordVisible.value
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                ),
+                                onPressed: () {
+                                  userController.passwordVisible.value =
+                                      !userController.passwordVisible.value;
+                                }),
+                            controller: _passwordController,
+                          )),
                       const SizedBox(
                         height: 16,
                       ),
@@ -172,7 +159,7 @@ class _SignUpState extends State<SignUp> {
                         discription: 'Already Have an account? ',
                         text: 'Log In here',
                         onTap: () {
-                          Get.offAll(const LoginScreen());
+                          Get.offAll(LoginScreen());
                         },
                       )
                     ],

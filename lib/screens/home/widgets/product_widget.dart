@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ihm/styles/app_colors.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:simple_list_tile/simple_list_tile.dart';
 
@@ -37,15 +38,37 @@ class ProductsWidget extends StatelessWidget {
                         ),
                       );
                     },
-                    title: CustomText(
+                    title: RichText(
+                      text: TextSpan(
+                        text: producsController.product[index].name,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 16,
+                        ),
+                        children: <TextSpan>[
+                          TextSpan(text: ' \n'),
+                          TextSpan(
+                            text: producsController.product[index].brand,
+                            style: const TextStyle(
+                              decoration: TextDecoration.underline,
+                              fontWeight: FontWeight.normal,
+                              color: AppColors.blackshade,
+                              fontSize: 11,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    /* CustomText(
                       text: producsController.product[index].name +
                           "\n" +
                           producsController.product[index].brand,
-                    ),
+                    ),*/
                     subtitle: CustomText(
                       text: producsController.product[index].price.toString() +
                           " \$",
-                      size: 20,
+                      size: 17,
                       weight: FontWeight.bold,
                     ),
                     trailing: IconButton(

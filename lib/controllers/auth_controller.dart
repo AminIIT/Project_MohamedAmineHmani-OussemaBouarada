@@ -11,6 +11,7 @@ import 'package:ihm/screens/authentification/signup.dart';
 
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
+  RxBool passwordVisible = true.obs;
 
   late Rx<User?> firebaseUser;
   Rx<UserModel> userModel = UserModel().obs;
@@ -31,7 +32,7 @@ class AuthController extends GetxController {
     super.onReady();
     // auth is comning from the constants.dart file but it is basically FirebaseAuth.instance.
     // Since we have to use that many times I just made a constant file and declared there
-
+    passwordVisible.value = false;
     firebaseUser = Rx<User?>(auth.currentUser);
     googleSignInAccount = Rx<GoogleSignInAccount?>(googleSign.currentUser);
 
@@ -45,7 +46,7 @@ class AuthController extends GetxController {
   _setInitialScreen(User? user) {
     if (user == null) {
       // if the user is not found then the user is navigated to the Register Screen
-      Get.offAll(() => const SignUp());
+      Get.offAll(() =>  SignUp());
     } else {
       userModel.bindStream(listenToUser());
       // if the user exists and logged in the the user is navigated to the Home Screen
@@ -57,7 +58,7 @@ class AuthController extends GetxController {
     print(googleSignInAccount);
     if (googleSignInAccount == null) {
       // if the user is not found then the user is navigated to the Register Screen
-      Get.offAll(() => const SignUp());
+      Get.offAll(() => SignUp());
     } else {
       Get.snackbar("title", "logging");
       // if the user exists and logged in the the user is navigated to the Home Screen
