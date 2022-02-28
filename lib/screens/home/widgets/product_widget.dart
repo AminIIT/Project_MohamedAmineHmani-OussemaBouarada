@@ -25,7 +25,10 @@ class ProductsWidget extends StatelessWidget {
                 children: [
                   SimpleListTile(
                     onTap: () {
-                      print('test');
+                      Image(
+                        image:
+                            NetworkImage(producsController.product[index].name),
+                      );
                     },
                     title: CustomText(
                       text: producsController.product[index].name +

@@ -112,7 +112,7 @@ class PaymentsController extends GetxController {
 
       logger.i("length ${payments.length}");
       dismissLoadingWidget();
-      Get.to(() => PaymentsScreen());
+      Get.to(() => const PaymentsScreen());
     });
   }
 
